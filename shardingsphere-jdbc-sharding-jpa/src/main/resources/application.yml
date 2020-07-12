@@ -1,3 +1,11 @@
 spring:
   profiles:
-    active: standardsharding
+#   标准分片
+#    active: standardsharding
+#   行表达式分片
+    active: inlinesharding
+
+  shardingsphere:
+    props:
+      sql:
+        show: true

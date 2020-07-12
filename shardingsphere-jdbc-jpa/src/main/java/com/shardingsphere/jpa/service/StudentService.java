@@ -16,6 +16,7 @@ public class StudentService implements CommonService {
 
     @Override
     public void doAction() {
+        studentRepository.deleteAll();
         for (int i = 1; i <= 16; i++) {
             Student student = Student.builder().id(i).age(10).name("test").build();
             studentRepository.save(student);

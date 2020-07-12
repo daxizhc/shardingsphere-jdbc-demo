@@ -30,3 +30,8 @@ shardingsphere-jdbc-demo
 
 - 运行shardingsphere-jdbc-sharding-jpa下的JpaShardingMain类中的main方法
 
+## 4、配置方法
+
+- ShardingSphere分库分表框架中，提供了如下几种不同的策略：标准分片策略、复合分片策略、行表达式分片策略、Hint分片策略。
+
+- 本Demo项目可以在shardingsphere-jdbc-sharding-jpa文件夹下的application.yml文件中指定使用哪一种策略，尽可能多的展示框架的功能。
