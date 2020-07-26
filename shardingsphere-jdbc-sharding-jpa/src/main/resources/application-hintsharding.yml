@@ -1,0 +1,26 @@
+spring:
+  shardingsphere:
+    datasource:
+      names: db1, db2
+      db1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/shardingsphere_1
+        username: root
+        password: 123456
+      db2:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/shardingsphere_2
+        username: root
+        password: 123456
+    sharding:
+      tables:
+        student:
+          actual-data-nodes: db$->{1..2}.tb_student_$->{1..2}
+          database-strategy:
+            hint:
+              algorithm-class-name: com.shardingsphere.sharding.jpa.algorithm.DatabaseHintShardingAlgorithm
+          table-strategy:
+            hint:
+              algorithm-class-name: com.shardingsphere.sharding.jpa.algorithm.TableHintShardingAlgorithm

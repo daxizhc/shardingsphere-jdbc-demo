@@ -1,5 +1,6 @@
 package com.shardingsphere.sharding.jpa;
 
+import org.apache.shardingsphere.api.hint.HintManager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -19,7 +20,16 @@ public class JpaShardingMain {
         ConfigurableApplicationContext ctx = SpringApplication.run(JpaShardingMain.class, args);
         CommonService studentService = ctx.getBean(CommonService.class);
         studentService.doAction();
+//        doInHint(studentService);
         System.out.println("--------------------------------finish--------------------------------");
+    }
+
+    private static void doInHint(CommonService studentService) {
+        try (HintManager hintManager = HintManager.getInstance()){
+            hintManager.addDatabaseShardingValue("student", 123);
+            hintManager.addTableShardingValue("student", "234");
+            studentService.doAction();
+        }
     }
 
 }
